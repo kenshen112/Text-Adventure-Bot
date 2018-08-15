@@ -11,11 +11,16 @@ namespace Text_Adventure_Bot
 {
     class Rooms
     {
+        public class Data
+        {
+            public int ID;
+            public String Room_Name;
+            public String Description;
+            public Char[] Directions;
+        }
+
+        private Data room = new Data();
         private bool wasParsed = false;
-        private int id;
-        private String name;
-        private String description;
-        private Char[] directions;
 
         public Rooms()
         {
@@ -27,10 +32,7 @@ namespace Text_Adventure_Bot
             String fp = File.ReadAllText(filePath);
 
             if (File.Exists(filePath)){
-                var JSON = JsonConvert.DeserializeObject<dynamic>(filePath);
-                name = JSON.Room_Name;
-                id = JSON.ID;
-                description = JSON.description;
+                var JSON = JsonConvert.DeserializeObject<Data>(fp);
                 wasParsed = true;
             }
 
@@ -41,9 +43,9 @@ namespace Text_Adventure_Bot
     
         public void printRoom()
         {
-            Console.WriteLine(id);
-            Console.WriteLine(name);
-            Console.WriteLine(description);
+            Console.WriteLine(room.ID);
+            Console.WriteLine(room.Room_Name);
+            Console.WriteLine(room.Description);
         }
 
     }
