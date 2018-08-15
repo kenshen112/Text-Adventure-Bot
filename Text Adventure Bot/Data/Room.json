@@ -1,0 +1,17 @@
+{
+"Test 01" : {
+
+"ID" : "0"
+"Room_Name" : "Test Room 1"
+"Directions" ["S"]
+"Description" : "Thou encounterest a blank test room... Surpringly not alot in here adventurerer."
+}
+
+"Test 02" : {
+"ID" : "1"
+"Room_Name" : "Test Room 2"
+"Description" : "Thou encounterest another blank room ah ha this must also be a strange test room adventurerer"
+
+Directions["N, S"]
+}
+},
