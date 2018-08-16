@@ -9,43 +9,47 @@ using Text_Adventure_Bot;
 
 namespace Text_Adventure_Bot
 {
+
+public class Data
+    {
+        public int ID { get; set; }
+        public string Room_Name { get; set; }
+        public string Description { get; set; }
+        public char[] Directions { get; set; }
+    }
+
+
     class Rooms
     {
-        public class Data
-        {
-            public int ID;
-            public String Room_Name;
-            public String Description;
-            public Char[] Directions;
-        }
+        private bool wasParsed { get; set; }
 
-        private Data room = new Data();
-        private bool wasParsed = false;
+        public List <Data> RoomList { get; private set; }
 
         public Rooms()
         {
             wasParsed = false;
         }
 
-        public bool parseFile(string filePath)
+        private List<Data> parseFile(string filePath)
         {
-            String fp = File.ReadAllText(filePath);
+            string fp = File.ReadAllText(filePath);
 
             if (File.Exists(filePath)){
-                var JSON = JsonConvert.DeserializeObject<Data>(fp);
                 wasParsed = true;
+                return JsonConvert.DeserializeObject<List<Data>>(File.ReadAllText(filePath));
             }
 
-            else { wasParsed = false; }
-
-            return wasParsed;
+            else
+            {
+                wasParsed = false;
+                return null;
+            }
         }
     
-        public void printRoom()
+        public void Initalize()
         {
-            Console.WriteLine(room.ID);
-            Console.WriteLine(room.Room_Name);
-            Console.WriteLine(room.Description);
+            var items = parseFile("Data/Room.json");
+            RoomList = items;
         }
 
     }

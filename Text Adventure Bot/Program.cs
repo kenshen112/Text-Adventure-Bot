@@ -11,9 +11,23 @@ namespace Text_Adventure_Bot
     {
         static void Main(string[] args)
         {
-            Rooms room = new Rooms();
-            room.parseFile("Data/Room.json");
-            room.printRoom();
+            var room = new Rooms();
+
+            room.Initalize();
+
+            foreach (var item in room.RoomList)
+            {
+                Console.WriteLine($"You found room {item.ID}! {item.Description}");
+
+                for (int i = 0; i < item.Directions.GetLength(i); i++)
+                {
+
+                    Console.WriteLine($"Valid directions are {item.Directions[i]}");
+                }
+            }
+
+            Console.ReadLine();
+
         }
     }
 }
